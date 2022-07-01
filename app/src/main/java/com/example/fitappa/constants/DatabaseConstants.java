@@ -129,4 +129,13 @@ public class DatabaseConstants {
     public String getPerformedWorkouts() {
         return "Performed Workouts";
     }
+
+    /**
+     * Get the string for the realm app id
+     *
+     * @return String realm app id
+     */
+    public String getRealmAppID() {
+        return "fitapp-hviuu";
+    }
 }

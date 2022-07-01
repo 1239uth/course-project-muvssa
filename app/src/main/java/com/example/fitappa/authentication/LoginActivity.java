@@ -22,7 +22,7 @@ import java.util.Objects;
  * @author Uthman
  * @since 0.2
  */
-public class LoginActivity extends AppCompatActivity implements OpensActivityWithProfile {
+public class LoginActivity extends AppCompatActivity implements AuthenticationActivity {
     private LoginPresenter presenter;
 
     /**

@@ -2,17 +2,21 @@ package com.example.fitappa.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fitappa.R;
-import com.example.fitappa.authentication.MainActivity;
+import com.example.fitappa.constants.DatabaseConstants;
 import com.example.fitappa.routine.StartWorkoutFromRoutinesActivity;
+import com.example.fitappa.start.MainActivity;
 import com.example.fitappa.workout.workout_log.WorkoutLogActivity;
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
+
+import io.realm.mongodb.App;
+import io.realm.mongodb.User;
 
 /**
  * This class is a view class meant to open the activity_dashboard xml, a hub between other pages in the app
@@ -56,19 +60,31 @@ public class DashboardActivity extends AppCompatActivity implements DashboardPre
         openProfileBtn.setOnClickListener(v -> openProfile());
 
         Button btn = findViewById(R.id.WorkoutLogsBtn);
-        btn.setOnClickListener(v -> openLogs());
+        btn.setOnClickListener(v -> openWorkoutLog());
     }
 
-    private void openLogs() {
+    private void openWorkoutLog() {
         startActivity(new Intent(this, WorkoutLogActivity.class));
     }
 
     /**
-     * Sign out the current Firebase user
+     * Sign out the current user
      */
     private void signOut() {
         // Remote
-        FirebaseAuth.getInstance().signOut();
+//        FirebaseAuth.getInstance().signOut();
+
+        // TODO: Separate this into a gateway
+        DatabaseConstants constants = new DatabaseConstants();
+        App app = new App(constants.getRealmAppID());
+
+        User user = app.currentUser();
+        if (user == null) return;
+
+        user.logOutAsync(it -> {
+            if (!it.isSuccess())
+                Log.e("mongotest123: ", it.getError().getLocalizedMessage());
+        });
 
         goBackToMain();
     }

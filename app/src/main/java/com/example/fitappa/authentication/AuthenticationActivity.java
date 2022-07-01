@@ -5,7 +5,7 @@ package com.example.fitappa.authentication;
  * <p>
  * To be initialized by a class that needs to pass in a profile and navigate to the DashboardActivity
  */
-interface OpensActivityWithProfile {
+interface AuthenticationActivity {
 
     /**
      * Open the DashboardActivity

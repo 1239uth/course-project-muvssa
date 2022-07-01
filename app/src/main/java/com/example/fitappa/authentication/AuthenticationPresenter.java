@@ -15,14 +15,14 @@ abstract class AuthenticationPresenter {
     /**
      * An interface which contains a method to open an activity given a profile and display an error given a message
      */
-    protected final OpensActivityWithProfile view;
+    protected final AuthenticationActivity view;
 
     /**
-     * Constructor that takes in an OpensActivityWithProfile interface and initializes it
+     * Constructor that takes in an AuthenticationActivity interface and initializes it
      *
-     * @param view OpensActivityWithProfile interface that contains methods to set error and open activity with profile
+     * @param view AuthenticationActivity interface that contains methods to set error and open activity with profile
      */
-    AuthenticationPresenter(OpensActivityWithProfile view) {
+    AuthenticationPresenter(AuthenticationActivity view) {
         this.view = view;
     }
 

@@ -25,7 +25,7 @@ class Profile implements Serializable {
     private String weight;
 
     /**
-     * Constructor that creates a new profile given a user's information
+     * Constructor that creates a new profile given a user's information with a unique ID
      *
      * @param email    Email address for user
      * @param username Username for the user
@@ -35,6 +35,17 @@ class Profile implements Serializable {
         this.email = email;
         this.username = username;
         this.uniqueID = uniqueID;
+    }
+
+    /**
+     * Constructor that creates a new profile given a user's information
+     *
+     * @param email    Email address for user
+     * @param username Username for the user
+     */
+    Profile(String email, String username) {
+        this.email = email;
+        this.username = username;
     }
 
     // empty constructor necessary for Firebase

@@ -18,11 +18,11 @@ class LoginPresenter extends AuthenticationPresenter {
     private final LoginGateway gateway;
 
     /**
-     * Constructor that takes an OpensActivityWithProfile interface and initializes it
+     * Constructor that takes an AuthenticationActivity interface and initializes it
      *
-     * @param view OpensActivityWithProfile interface which is implemented by an Activity
+     * @param view AuthenticationActivity interface which is implemented by an Activity
      */
-    LoginPresenter(OpensActivityWithProfile view) {
+    LoginPresenter(AuthenticationActivity view) {
         super(view);
         this.gateway = new LoginGateway(this);
     }

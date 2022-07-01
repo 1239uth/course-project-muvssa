@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fitappa.R;
-import com.example.fitappa.authentication.MainActivity;
+import com.example.fitappa.start.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;

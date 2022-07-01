@@ -1,8 +1,6 @@
 package com.example.fitappa.profile;
 
 import com.example.fitappa.constants.DatabaseConstants;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.SetOptions;
 
 /**
  * This is a gateway class to Firebase which lets a class save an object
@@ -20,6 +18,13 @@ public class SaveProfileGateway implements Saveable {
     SaveProfileGateway() {
     }
 
+    /**
+     * Create a new profile with given parameters
+     *
+     * @param email    email of user
+     * @param username username of user
+     * @param uniqueID unique identifier representing user
+     */
     public SaveProfileGateway(String email, String username, String uniqueID) {
         profile = new Profile(email, username, uniqueID);
     }
@@ -37,10 +42,10 @@ public class SaveProfileGateway implements Saveable {
             this.profile = (Profile) o;
         }
 
-        FirebaseFirestore database = FirebaseFirestore.getInstance();
-
-        database.collection(constants.getUsers())
-                .document(profile.getUniqueID())
-                .set(profile, SetOptions.merge());
+//        FirebaseFirestore database = FirebaseFirestore.getInstance();
+//
+//        database.collection(constants.getUsers())
+//                .document(profile.getUniqueID())
+//                .set(profile, SetOptions.merge());
     }
 }

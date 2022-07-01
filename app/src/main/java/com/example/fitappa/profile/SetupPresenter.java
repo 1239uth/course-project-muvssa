@@ -16,10 +16,10 @@ import java.util.regex.Pattern;
 class SetupPresenter implements LoadsProfile {
     private final View view;
 
-    String weight;
-    String height;
-    String firstName;
-    String lastName;
+    private String weight;
+    private String height;
+    private String firstName;
+    private String lastName;
 
     /**
      * A constructor for SetupPresenter

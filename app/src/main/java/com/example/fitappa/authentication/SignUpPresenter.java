@@ -21,11 +21,11 @@ class SignUpPresenter extends AuthenticationPresenter {
     private final SignUpGateway gateway;
 
     /**
-     * Constructor that takes an OpensActivityWithProfile interface and initializes it
+     * Constructor that takes an AuthenticationActivity interface and initializes it
      *
-     * @param view OpensActivityWithProfile interface which is implemented by an Activity
+     * @param view AuthenticationActivity interface which is implemented by an Activity
      */
-    SignUpPresenter(OpensActivityWithProfile view) {
+    SignUpPresenter(AuthenticationActivity view) {
         super(view);
         this.gateway = new SignUpGateway(this);
     }

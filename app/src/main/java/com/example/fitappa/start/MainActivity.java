@@ -1,4 +1,4 @@
-package com.example.fitappa.authentication;
+package com.example.fitappa.start;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,9 +7,9 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fitappa.R;
+import com.example.fitappa.authentication.LoginActivity;
+import com.example.fitappa.authentication.SignUpActivity;
 import com.example.fitappa.profile.DashboardActivity;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
@@ -34,8 +34,9 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Check if user is logged in before creating this view
-        checkAuth();
+
+        MainGateway mainGateway = new MainGateway(this);
+        mainGateway.checkAuth(this::openDashboard);
 
         super.onCreate(savedInstanceState);
         Objects.requireNonNull(getSupportActionBar()).hide();
@@ -61,25 +62,10 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method opens the DashboardActivity View
      */
-    private void openDashboard() {
+    void openDashboard() {
         finish();
         Intent home = new Intent(this, DashboardActivity.class);
         startActivity(home);
-    }
-
-    /**
-     * This method checks if the user was already logged in. If they are already logged, go to DashboardActivity,
-     * if not, continue.
-     */
-    private void checkAuth() {
-        // Get firebase user
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
-        // If a firebase user exists, then there is a user currently logged in, so proceed
-        // to Dashboard
-        if (firebaseUser != null) {
-            openDashboard();
-        }
     }
 
     /**
@@ -96,6 +82,10 @@ public class MainActivity extends AppCompatActivity {
     private void openLogInPage() {
         Intent login = new Intent(this, LoginActivity.class);
         startActivity(login);
+    }
+
+    interface ViewOpener {
+        void proceed();
     }
 
 }

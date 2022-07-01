@@ -21,7 +21,7 @@
         <activity android:name=".routine.StartWorkoutFromRoutinesActivity" />
         <activity android:name=".profile.SetupActivity" />
         <activity
-            android:name=".authentication.MainActivity"
+            android:name=".start.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
