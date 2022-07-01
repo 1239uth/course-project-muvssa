@@ -43,11 +43,19 @@ public class DashboardActivity extends AppCompatActivity implements DashboardPre
         new DashboardPresenter(this);
     }
 
+    /**
+     * Set the app bar title given a string
+     *
+     * @param title App bar title
+     */
     @Override
     public void updateAppBarTitle(String title) {
         Objects.requireNonNull(getSupportActionBar()).setTitle(title);
     }
 
+    /**
+     * Setup all the buttons with on click listeners
+     */
     @Override
     public void setupButtons() {
         Button logoutBtn = findViewById(R.id.LogoutBtn);
@@ -63,6 +71,9 @@ public class DashboardActivity extends AppCompatActivity implements DashboardPre
         btn.setOnClickListener(v -> openWorkoutLog());
     }
 
+    /**
+     * Go to the Workout Log activity
+     */
     private void openWorkoutLog() {
         startActivity(new Intent(this, WorkoutLogActivity.class));
     }
@@ -71,9 +82,6 @@ public class DashboardActivity extends AppCompatActivity implements DashboardPre
      * Sign out the current user
      */
     private void signOut() {
-        // Remote
-//        FirebaseAuth.getInstance().signOut();
-
         // TODO: Separate this into a gateway
         DatabaseConstants constants = new DatabaseConstants();
         App app = new App(constants.getRealmAppID());
@@ -82,11 +90,12 @@ public class DashboardActivity extends AppCompatActivity implements DashboardPre
         if (user == null) return;
 
         user.logOutAsync(it -> {
-            if (!it.isSuccess())
+            if (it.isSuccess())
+                goBackToMain();
+            else
                 Log.e("mongotest123: ", it.getError().getLocalizedMessage());
         });
 
-        goBackToMain();
     }
 
     /**

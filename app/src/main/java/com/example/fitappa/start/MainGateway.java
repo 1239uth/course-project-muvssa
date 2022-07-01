@@ -1,5 +1,7 @@
 package com.example.fitappa.start;
 
+import android.content.Context;
+
 import com.example.fitappa.constants.DatabaseConstants;
 import com.example.fitappa.start.MainActivity.ViewOpener;
 
@@ -14,8 +16,13 @@ import io.realm.mongodb.User;
 class MainGateway {
     private final DatabaseConstants constants;
 
-    MainGateway(MainActivity view) {
-        Realm.init(view);
+    /**
+     * Constructor that takes the main view's context to initialize database
+     *
+     * @param context Context of the main view
+     */
+    MainGateway(Context context) {
+        Realm.init(context);
         constants = new DatabaseConstants();
     }
 
@@ -25,12 +32,6 @@ class MainGateway {
      * @param view ViewOpener to proceed when a user is already authenticated
      */
     void checkAuth(ViewOpener view) {
-//        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
-        // If user exists, skip authentication and proceed
-//        if (firebaseUser != null)
-//            view.proceed();
-
         App app = new App(new AppConfiguration.Builder(constants.getRealmAppID()).build());
 
         User user = app.currentUser();

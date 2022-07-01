@@ -24,7 +24,7 @@ public class ViewProfilePresenter implements LoadsProfile {
         this.view.updateAppBarTitle(PAGE_TITLE);
         this.view.setupElements();
 
-        Loadable gateway = new ProfileReader(this);
+        Loadable gateway = new LoadProfileGateway(this);
         gateway.load();
     }
 

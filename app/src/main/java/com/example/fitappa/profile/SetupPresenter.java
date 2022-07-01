@@ -78,7 +78,7 @@ class SetupPresenter implements LoadsProfile {
         if (Pattern.matches(regex, weight) && Pattern.matches(regex, height) && Pattern.matches(regex2, firstName)
                 && Pattern.matches(regex2, lastName)) {
 
-            Loadable gateway = new ProfileReader(this);
+            Loadable gateway = new LoadProfileGateway(this);
             gateway.load();
 
             view.goToDashboard();

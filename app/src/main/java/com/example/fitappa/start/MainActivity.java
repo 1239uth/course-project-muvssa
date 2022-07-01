@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        MainGateway mainGateway = new MainGateway(this);
+        MainGateway mainGateway = new MainGateway(getApplicationContext());
         mainGateway.checkAuth(this::openDashboard);
 
         super.onCreate(savedInstanceState);
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method opens the DashboardActivity View
      */
-    void openDashboard() {
+    private void openDashboard() {
         finish();
         Intent home = new Intent(this, DashboardActivity.class);
         startActivity(home);

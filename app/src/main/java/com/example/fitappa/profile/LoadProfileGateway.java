@@ -19,7 +19,7 @@ import java.util.Objects;
  * @author Uthman
  * @since 0.3
  */
-class ProfileReader implements Loadable {
+class LoadProfileGateway implements Loadable {
     private final LoadsProfile presenter;
 
     /**
@@ -28,7 +28,7 @@ class ProfileReader implements Loadable {
      *
      * @param presenter Interface that is used to update the presenter
      */
-    ProfileReader(LoadsProfile presenter) {
+    LoadProfileGateway(LoadsProfile presenter) {
         this.presenter = presenter;
     }
 

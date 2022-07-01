@@ -2,13 +2,12 @@ package com.example.fitappa.profile;
 
 /**
  * This class is a presenter for the Dashboard activity
- *
+ * <p>
  * Methods in this set up buttons and the title of the activity
- *
+ * <p>
  * Documentation specifies what the methods do
  *
  * @author Uthman
- *
  * @since 0.6
  */
 
