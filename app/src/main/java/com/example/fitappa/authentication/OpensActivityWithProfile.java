@@ -8,9 +8,9 @@ package com.example.fitappa.authentication;
 interface OpensActivityWithProfile {
 
     /**
-     * Open the DashboardActivity and pass a profile to it
+     * Open the DashboardActivity
      */
-    void openActivityWith();
+    void openActivity();
 
     /**
      * Display an error message given a message

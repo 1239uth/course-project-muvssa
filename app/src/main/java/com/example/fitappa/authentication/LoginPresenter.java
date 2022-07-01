@@ -10,7 +10,6 @@ import android.widget.EditText;
  * <p>
  * It also determines what error message to display to the user.
  * <p>
- * The documentation in this class give a specification on what the methods do
  *
  * @author Uthman
  * @since 0.2

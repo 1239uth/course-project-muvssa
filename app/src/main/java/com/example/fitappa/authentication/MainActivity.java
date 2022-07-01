@@ -19,7 +19,6 @@ import java.util.Objects;
  * This activity's methods gives the user two options, either login, or signup, and leads them to the corresponding
  * activities.
  * <p>
- * The documentation in this class give a specification on what the methods do
  *
  * @author Uthman
  * @author Souren

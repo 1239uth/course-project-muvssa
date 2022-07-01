@@ -18,7 +18,6 @@ import java.util.Objects;
  * <p>
  * The class's methods allow the user to implement login info
  * <p>
- * The documentation in this class give a specification on what the methods do
  *
  * @author Uthman
  * @since 0.2
@@ -54,13 +53,13 @@ public class LoginActivity extends AppCompatActivity implements OpensActivityWit
     }
 
     /**
-     * This method opens the DashboardActivity while passing in the profile.
+     * This method opens the DashboardActivity.
      */
     @Override
-    public void openActivityWith() {
+    public void openActivity() {
         finish();
-        Intent home = new Intent(this, DashboardActivity.class);
-        startActivity(home);
+        Intent dashboard = new Intent(this, DashboardActivity.class);
+        startActivity(dashboard);
     }
 
     /**

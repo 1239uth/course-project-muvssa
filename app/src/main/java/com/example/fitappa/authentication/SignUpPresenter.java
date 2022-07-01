@@ -12,7 +12,6 @@ import java.util.regex.Pattern;
  * <p>
  * The methods in this activity allow information to move to and from the back end
  * <p>
- * The documentation in this class give a specification on what the methods do
  *
  * @author Souren
  * @author Uthman

@@ -18,7 +18,6 @@ import java.util.Objects;
  * <p>
  * The methods in this activity allow the user to input information into the program to sign up
  * <p>
- * The documentation in this class give a specification on what the methods do
  *
  * @author Souren
  * @since 2.1
@@ -61,7 +60,7 @@ public class SignUpActivity extends AppCompatActivity implements OpensActivityWi
      * This method opens the SetUpActivity View while passing in the profile
      */
     @Override
-    public void openActivityWith() {
+    public void openActivity() {
         finish();
         Intent setup = new Intent(this, SetupActivity.class);
         startActivity(setup);

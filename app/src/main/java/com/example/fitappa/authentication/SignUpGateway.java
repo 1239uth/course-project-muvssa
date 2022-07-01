@@ -7,10 +7,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 /**
  * This class is a gateway that deals with signing up a user with the database given an email, username, and password
- *
+ * <p>
  * Methods in this class move information to the database
- *
- * Documentation in this class specifies what methods do
  *
  * @author Uthman
  * @version 1.1
@@ -50,7 +48,7 @@ class SignUpGateway {
                     gateway.save(null);
 
                     // proceed to update activity
-                    presenter.updateActivity();
+                    presenter.proceed();
                 })
                 .addOnFailureListener(e -> presenter.setError());
     }

@@ -8,7 +8,6 @@ import com.google.firebase.auth.FirebaseAuth;
  * <p>
  * The class's methods allow users to fetch information from the database
  * <p>
- * The documentation in this class give a specification on what the methods do
  *
  * @author Uthman
  * @since 0.2
@@ -35,7 +34,7 @@ class LoginGateway {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mAuth.signInWithEmailAndPassword(email, password)
                 // If login succeeds, proceed to update activity from the presenter
-                .addOnSuccessListener(authResult -> presenter.updateActivity())
+                .addOnSuccessListener(authResult -> presenter.proceed())
                 // If login fails, set an error with the presenter
                 .addOnFailureListener(e -> presenter.setError());
     }

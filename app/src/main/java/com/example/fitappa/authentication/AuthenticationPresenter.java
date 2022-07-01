@@ -7,7 +7,6 @@ package com.example.fitappa.authentication;
  * The class's methods use an interface which represents a view that allows this class to call its method and open
  * and activity with the profile.
  * <p>
- * The documentation in this class give a specification on what the methods do
  *
  * @author Uthman
  * @since 0.2
@@ -28,10 +27,10 @@ abstract class AuthenticationPresenter {
     }
 
     /**
-     * Update an activity by passing in a profile to it
+     * Proceed to next activity when authenticated
      */
-    void updateActivity() {
-        view.openActivityWith();
+    void proceed() {
+        view.openActivity();
     }
 
     /**
