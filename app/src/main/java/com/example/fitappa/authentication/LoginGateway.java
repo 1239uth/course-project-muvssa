@@ -35,19 +35,12 @@ class LoginGateway {
     }
 
     /**
-     * Log in and authenticate user given credentials with Firebase
+     * Log in and authenticate user given credentials with MongoDB
      *
      * @param email    email to log in with
      * @param password password to log in with
      */
     void login(String email, String password) {
-//        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-//        mAuth.signInWithEmailAndPassword(email, password)
-//                // If login succeeds, proceed to update activity from the presenter
-//                .addOnSuccessListener(authResult -> presenter.proceed())
-//                // If login fails, set an error with the presenter
-//                .addOnFailureListener(e -> presenter.setError());
-
         App app = new App(constants.getRealmAppID());
 
         Credentials emailPasswordCredentials = Credentials.emailPassword(email, password);
@@ -59,7 +52,7 @@ class LoginGateway {
                 presenter.proceed();
             } else {
                 Log.e("mongotest123: ", it.getError().getLocalizedMessage());
-                presenter.setError();
+                presenter.setError(it.getError().getLocalizedMessage());
             }
         });
 

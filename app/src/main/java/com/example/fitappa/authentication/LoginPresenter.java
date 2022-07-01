@@ -2,6 +2,8 @@ package com.example.fitappa.authentication;
 
 import android.widget.EditText;
 
+import java.util.regex.Pattern;
+
 /**
  * This is a presenter for the LoginActivity.
  * <p>
@@ -39,9 +41,17 @@ class LoginPresenter extends AuthenticationPresenter {
         String email = emailText.getText().toString().trim();
         String password = passwordText.getText().toString().trim();
 
-        // Set error if email or password are empty
+        // build verification regex to verify email
+        String emailRegex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+        Pattern pat = Pattern.compile(emailRegex);
+
+        // Set error if email or password are empty or invalid
         if (email.isEmpty()) {
-            emailText.setError("Please fill out username");
+            emailText.setError("Please fill out email");
+            emailText.requestFocus();
+            return;
+        } else if (!pat.matcher(email).matches()) {
+            emailText.setError("Please enter a valid email");
             emailText.requestFocus();
             return;
         } else if (password.isEmpty()) {
@@ -57,8 +67,8 @@ class LoginPresenter extends AuthenticationPresenter {
      * Set an error when the database fails to retrieve the profile
      */
     @Override
-    public void setError() {
-        view.showErrorMessage("Incorrect email or password. \nPlease try again.");
+    public void setError(String message) {
+        view.showErrorMessage(message);
     }
 
 }

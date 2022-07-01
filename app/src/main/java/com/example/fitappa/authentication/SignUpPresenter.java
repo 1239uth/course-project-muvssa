@@ -82,7 +82,7 @@ class SignUpPresenter extends AuthenticationPresenter {
      * Set an error when the database fails to retrieve the profile
      */
     @Override
-    public void setError() {
-        view.showErrorMessage("Email already in use. \nPlease try again");
+    public void setError(String message) {
+        view.showErrorMessage(message);
     }
 }

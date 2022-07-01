@@ -6,6 +6,7 @@ import com.example.fitappa.constants.DatabaseConstants;
 import com.example.fitappa.profile.SaveProfileGateway;
 import com.example.fitappa.profile.Saveable;
 
+import java.util.Locale;
 import java.util.concurrent.atomic.AtomicReference;
 
 import io.realm.mongodb.App;
@@ -35,7 +36,7 @@ class SignUpGateway {
     }
 
     /**
-     * Sign up and authenticate user given credentials using Firebase
+     * Sign up and authenticate user given credentials using MongoDB
      *
      * @param email    email to sign up with
      * @param username username to create new profile
@@ -48,7 +49,7 @@ class SignUpGateway {
                 login(email, username, password, app);
             } else {
                 Log.e("mongotest123: ", it.getError().getLocalizedMessage());
-                presenter.setError();
+                presenter.setError(it.getError().getLocalizedMessage());
             }
         });
     }

@@ -36,5 +36,5 @@ abstract class AuthenticationPresenter {
     /**
      * Set an error when the database fails to retrieve the profile
      */
-    abstract void setError();
+    abstract void setError(String message);
 }
