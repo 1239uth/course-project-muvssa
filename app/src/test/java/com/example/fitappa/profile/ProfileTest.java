@@ -95,8 +95,8 @@ public class ProfileTest {
     @Test
     public void getUniqueID() {
         //sees if the desired string matches the one that's got
-        assertEquals("101290", profile1.getUniqueID());
-        assertEquals("239092", profile2.getUniqueID());
+        assertEquals("101290", profile1.getId());
+        assertEquals("239092", profile2.getId());
     }
 
     /**

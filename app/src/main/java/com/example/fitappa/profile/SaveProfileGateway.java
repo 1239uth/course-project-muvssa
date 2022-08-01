@@ -1,6 +1,6 @@
 package com.example.fitappa.profile;
 
-import com.example.fitappa.constants.DatabaseConstants;
+import io.realm.Realm;
 
 /**
  * This is a gateway class to Firebase which lets a class save an object
@@ -36,16 +36,11 @@ public class SaveProfileGateway implements Saveable {
      */
     @Override
     public void save(Object o) {
-        DatabaseConstants constants = new DatabaseConstants();
-
         if (o != null) {
             this.profile = (Profile) o;
         }
 
-//        FirebaseFirestore database = FirebaseFirestore.getInstance();
-//
-//        database.collection(constants.getUsers())
-//                .document(profile.getUniqueID())
-//                .set(profile, SetOptions.merge());
+        Realm realm = Realm.getDefaultInstance();
+        realm.executeTransactionAsync(transaction -> transaction.insertOrUpdate(profile));
     }
 }

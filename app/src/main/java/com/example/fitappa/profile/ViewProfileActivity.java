@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fitappa.R;
 import com.example.fitappa.start.MainActivity;
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
 
@@ -59,7 +58,8 @@ public class ViewProfileActivity extends AppCompatActivity implements ViewProfil
     /**
      * Go back to dashboard activity with the current profile
      */
-    private void backToDashboard() {
+    @Override
+    public void backToDashboard() {
         finish();
         Intent dashboard = new Intent(this, DashboardActivity.class);
         startActivity(dashboard);
@@ -106,8 +106,8 @@ public class ViewProfileActivity extends AppCompatActivity implements ViewProfil
     }
 
     @Override
-    public void signOut() {
-        FirebaseAuth.getInstance().signOut();
+    public void goToMain() {
+        finish();
         startActivity(new Intent(this, MainActivity.class));
     }
 

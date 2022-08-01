@@ -1,12 +1,10 @@
 package com.example.fitappa.profile;
 
 import com.example.fitappa.constants.DatabaseConstants;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.Objects;
+import io.realm.Realm;
+import io.realm.mongodb.App;
+import io.realm.mongodb.User;
 
 /**
  * This class is used for retrieving a profile from the database given a username, and updating
@@ -39,30 +37,21 @@ class LoadProfileGateway implements Loadable {
     public void load() {
         DatabaseConstants constants = new DatabaseConstants();
 
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        DocumentReference documentReference = FirebaseFirestore.getInstance()
-                .collection(constants.getUsers())
-                .document(Objects.requireNonNull(firebaseUser).getUid());
+        App app = new App(constants.getRealmAppID());
+        User user = app.currentUser();
+        if (user == null) return;
 
-        documentReference
-                .get()
-                .addOnSuccessListener(documentSnapshot -> {
+        Realm realm = Realm.getDefaultInstance();
+        Profile profile = realm.where(Profile.class).equalTo("id", user.getId()).findFirstAsync();
+        profile.addChangeListener(initializeListener -> {
+            Profile returnProfile = new Profile(profile.getEmail(), profile.getUsername(), profile.getId());
+            returnProfile.setFirstName(profile.getFirstName());
+            returnProfile.setLastName(profile.getLastName());
+            returnProfile.setHeight(profile.getHeight());
+            returnProfile.setWeight(profile.getWeight());
+            profile.removeAllChangeListeners();
 
-                    String username = (String) documentSnapshot.get(constants.getUsername());
-                    String email = (String) documentSnapshot.get(constants.getEmail());
-                    String firstName = (String) documentSnapshot.get(constants.getFirstName());
-                    String lastName = (String) documentSnapshot.get(constants.getLastName());
-                    String weight = (String) documentSnapshot.get(constants.getWeight());
-                    String height = (String) documentSnapshot.get(constants.getHeight());
-
-                    Profile profile = new Profile(email, username, firebaseUser.getUid());
-                    // Set extra info
-                    profile.setFirstName(firstName);
-                    profile.setLastName(lastName);
-                    profile.setHeight(height);
-                    profile.setWeight(weight);
-
-                    presenter.loadProfile(profile);
-                });
+            presenter.loadProfile(returnProfile);
+        });
     }
 }

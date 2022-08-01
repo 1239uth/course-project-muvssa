@@ -1,6 +1,8 @@
 package com.example.fitappa.profile;
 
-import java.io.Serializable;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+import io.realm.annotations.Required;
 
 /**
  * This class is the central storage for all relevant entities and use cases for the third and fourth layers of
@@ -14,13 +16,17 @@ import java.io.Serializable;
  * <p>
  * Since 2.6
  */
-class Profile implements Serializable {
+public class Profile extends RealmObject {
 
+    @PrimaryKey
+    private String id;
+    @Required
     private String email;
+    @Required
     private String username;
+
     private String firstName;
     private String lastName;
-    private String uniqueID;
     private String height;
     private String weight;
 
@@ -29,26 +35,15 @@ class Profile implements Serializable {
      *
      * @param email    Email address for user
      * @param username Username for the user
-     * @param uniqueID Unique identifier representing the User (necessary for database query)
+     * @param id Unique identifier representing the User (necessary for database query)
      */
-    Profile(String email, String username, String uniqueID) {
+    Profile(String email, String username, String id) {
         this.email = email;
         this.username = username;
-        this.uniqueID = uniqueID;
+        this.id = id;
     }
 
-    /**
-     * Constructor that creates a new profile given a user's information
-     *
-     * @param email    Email address for user
-     * @param username Username for the user
-     */
-    Profile(String email, String username) {
-        this.email = email;
-        this.username = username;
-    }
-
-    // empty constructor necessary for Firebase
+    // empty constructor necessary for Database
     @SuppressWarnings("unused")
     public Profile() {
     }
@@ -76,8 +71,8 @@ class Profile implements Serializable {
      *
      * @return String representing the user's unique identifier
      */
-    public String getUniqueID() {
-        return this.uniqueID;
+    public String getId() {
+        return this.id;
     }
 
     /**
@@ -94,7 +89,7 @@ class Profile implements Serializable {
      *
      * @param weight String representing the weight of this profile
      */
-    void setWeight(String weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 
@@ -112,7 +107,7 @@ class Profile implements Serializable {
      *
      * @param height String representing the height of this profile
      */
-    void setHeight(String height) {
+    public void setHeight(String height) {
         this.height = height;
     }
 
@@ -130,7 +125,7 @@ class Profile implements Serializable {
      *
      * @param firstName String representing the first name for this profile
      */
-    void setFirstName(String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
@@ -148,7 +143,7 @@ class Profile implements Serializable {
      *
      * @param lastName String representing the last name of this profile
      */
-    void setLastName(String lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 }

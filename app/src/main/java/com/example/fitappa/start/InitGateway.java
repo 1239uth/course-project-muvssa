@@ -6,6 +6,7 @@ import com.example.fitappa.constants.DatabaseConstants;
 import com.example.fitappa.start.MainActivity.ViewOpener;
 
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import io.realm.mongodb.App;
 import io.realm.mongodb.AppConfiguration;
 import io.realm.mongodb.User;
@@ -13,7 +14,7 @@ import io.realm.mongodb.User;
 /**
  * This class initializes all database requirements and checks authentication for the view
  */
-class MainGateway {
+class InitGateway {
     private final DatabaseConstants constants;
 
     /**
@@ -21,9 +22,23 @@ class MainGateway {
      *
      * @param context Context of the main view
      */
-    MainGateway(Context context) {
-        Realm.init(context);
+    InitGateway(Context context) {
+        initializeRealm(context);
         constants = new DatabaseConstants();
+    }
+
+    /**
+     * Initialize and set configurations necessary for MongoDB Realm
+     *
+     * @param context Context of initial view in app
+     */
+    private void initializeRealm(Context context) {
+        Realm.init(context);
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .allowQueriesOnUiThread(true)
+                .allowWritesOnUiThread(true)
+                .build();
+        Realm.setDefaultConfiguration(config);
     }
 
     /**

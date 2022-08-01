@@ -35,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        MainGateway mainGateway = new MainGateway(getApplicationContext());
-        mainGateway.checkAuth(this::openDashboard);
+        InitGateway initGateway = new InitGateway(getApplicationContext());
+        initGateway.checkAuth(this::openDashboard);
 
         super.onCreate(savedInstanceState);
         Objects.requireNonNull(getSupportActionBar()).hide();

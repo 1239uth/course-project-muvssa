@@ -6,7 +6,6 @@ import com.example.fitappa.constants.DatabaseConstants;
 import com.example.fitappa.profile.SaveProfileGateway;
 import com.example.fitappa.profile.Saveable;
 
-import java.util.Locale;
 import java.util.concurrent.atomic.AtomicReference;
 
 import io.realm.mongodb.App;

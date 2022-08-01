@@ -91,8 +91,7 @@ class RoutinesGateway implements Loadable, Saveable {
                                      Map<String, List<Map<String, Object>>> routinesMap,
                                      DocumentSnapshot documentSnapshot) {
         // Loop through the man and add each routine to the Routines object
-        for (Object routineNameObject : Objects.requireNonNull(routinesMap).keySet()) {
-            String routineName = (String) routineNameObject;
+        for (String routineName : Objects.requireNonNull(routinesMap).keySet()) {
             Routine routine = new Routine(routineName);
 
             FirebaseWorkoutGetter firebaseWorkoutGetter = new FirebaseWorkoutGetter(routineName);
